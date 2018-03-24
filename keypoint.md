@@ -32,7 +32,7 @@ weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))
 biases = tf.Variable(tf.zeros(labels_count))
 
 
-#Test Cases
+# Test Cases   
 '''
 from tensorflow.python.ops.variables import Variable
 
@@ -77,7 +77,7 @@ loss = tf.reduce_mean(cross_entropy)
 # Create an operation that initializes all variables
 init = tf.global_variables_initializer()
 
-# Test Cases
+# Test Cases   
 '''python
 with tf.Session() as session:
     session.run(init)
