@@ -24,9 +24,9 @@ a=0.1
 b=0.9
 
 # Problem 2 - Set the features and labels tensors
-features = tf.placeholder(tf.float32)
+features = tf.placeholder(tf.float32)   
 labels = tf.placeholder(tf.float32)
 
 # Problem 2 - Set the weights and biases tensors
-weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))
+weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))   
 biases = tf.Variable(tf.zeros(labels_count))
