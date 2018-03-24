@@ -1,9 +1,9 @@
 # Keypoint of TensorFlow relevant
 ## photo pix memory
 
-train_features Shape: (55000, 784) Type: float32  
-how many bytes of memory does train_features need?
-172480000
+train_features Shape: (55000, 784) Type: float32   
+how many bytes of memory does train_features need?   
+172480000   
 method: (55000 * 784 * 32 / 8)
 
 # problem 1 - normalize scale
@@ -18,10 +18,10 @@ $
 
 Implement the Min-Max scaling function ( X′=a+(X−Xmin)(b−a)Xmax−XminX′=a+(X−Xmin)(b−a)Xmax−Xmin ) with the parameters:
 
-Xmin=0
-Xmax=255
-a=0.1
-b=0.9
+Xmin=0  
+Xmax=255  
+a=0.1  
+b=0.9  
 
 # Problem 2 - Set the features and labels tensors
 features = tf.placeholder(tf.float32)   
