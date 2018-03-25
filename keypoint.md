@@ -90,3 +90,17 @@ with tf.Session() as session:
 assert not np.count_nonzero(biases_data), 'biases must be zeros'
 
 print('Tests Passed!')
+
+
+# Deep Neural Networks
+
+Total number of parameters
+
+= size of W + size of b
+
+= 28x28x10 + 10
+
+= 7850
+
+General: N(input) K(output) :
+(N+1) * K (parameters)
