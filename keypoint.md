@@ -1,12 +1,12 @@
 # Keypoint of TensorFlow relevant
-## photo pix memory
+# Photo pix memory
 
 train_features Shape: (55000, 784) Type: float32   
 how many bytes of memory does train_features need?   
 172480000   
 method: (55000 * 784 * 32 / 8)
 
-# problem 1 - normalize scale
+# Problem 1 - normalize scale
 The first problem involves normalizing the features for your training and test data.
 Implement Min-Max scaling in the `normalize()` function to a range of `a=0.1` and `b=0.9`. After scaling, the values of the pixels in the input data should range from 0.1 to 0.9.
 Since the raw notMNIST image data is in [grayscale](https://en.wikipedia.org/wiki/Grayscale), the current values range from a min of 0 to a max of 255.
@@ -106,5 +106,6 @@ General: N(input) K(output) :
 (N+1) * K (parameters)
 
 # Two Variables: weights and bias   
+tf.reset_default_graph()  # Remove the previous weights and bias  
 bias = tf.Variable(tf.truncated_normal([3]), name='bias_0')  
 weights = tf.Variable(tf.truncated_normal([2, 3]) ,name='weights_0')
