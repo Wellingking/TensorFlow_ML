@@ -104,3 +104,7 @@ Total number of parameters
 
 General: N(input) K(output) :
 (N+1) * K (parameters)
+
+# Two Variables: weights and bias   
+bias = tf.Variable(tf.truncated_normal([3]), name='bias_0')  
+weights = tf.Variable(tf.truncated_normal([2, 3]) ,name='weights_0')
