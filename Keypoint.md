@@ -31,7 +31,6 @@ labels = tf.placeholder(tf.float32)
 weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))   
 biases = tf.Variable(tf.zeros(labels_count))
 
-
 # Test Cases   
 '''
 from tensorflow.python.ops.variables import Variable
@@ -91,7 +90,6 @@ assert not np.count_nonzero(biases_data), 'biases must be zeros'
 
 print('Tests Passed!')
 
-
 # Deep Neural Networks
 
 Total number of parameters
@@ -107,6 +105,15 @@ General: N(input) K(output) :
 
 # Convolution Neural Networks   
 Total number of parameters   
+Setup
+H = height, W = width, D = depth
+
+We have an input of shape 32x32x3 (HxWxD)  
+20 filters of shape 8x8x3 (HxWxD)  
+A stride of 2 for both the height and width (S)  
+Zero padding of size 1 (P)  
+Output Layer  
+14x14x20 (HxWxD)  
 Nice job! :-)
 That's right, there are 756560 total parameters. That's a HUGE amount! Here's how we calculate it:   
 
