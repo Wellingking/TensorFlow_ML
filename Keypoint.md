@@ -105,6 +105,14 @@ Total number of parameters
 General: N(input) K(output) :
 (N+1) * K (parameters)
 
+# Convolution Neural Networks   
+Total number of parameters   
+Nice job! :-)
+That's right, there are 756560 total parameters. That's a HUGE amount! Here's how we calculate it:   
+
+(8 * 8 * 3 + 1) * (14 * 14 * 20) = 756560   
+8 * 8 * 3 is the number of weights, we add 1 for the bias. Remember, each weight is assigned to every single part of the output (14 * 14 * 20). So we multiply these two numbers together and we get the final answer.
+
 # Two Variables: weights and bias name solution   
 tf.reset_default_graph()  # Remove the previous weights and bias  
 bias = tf.Variable(tf.truncated_normal([3]), name='bias_0')  
