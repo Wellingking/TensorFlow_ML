@@ -105,9 +105,8 @@ General: N(input) K(output) :
 
 # Convolution Neural Networks   
 Total number of parameters   
-Setup
-H = height, W = width, D = depth
-
+Setup   
+H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
 20 filters of shape 8x8x3 (HxWxD)  
 A stride of 2 for both the height and width (S)  
@@ -116,9 +115,15 @@ Output Layer
 14x14x20 (HxWxD)  
 Nice job! :-)
 That's right, there are 756560 total parameters. That's a HUGE amount! Here's how we calculate it:   
-
 (8 * 8 * 3 + 1) * (14 * 14 * 20) = 756560   
 8 * 8 * 3 is the number of weights, we add 1 for the bias. Remember, each weight is assigned to every single part of the output (14 * 14 * 20). So we multiply these two numbers together and we get the final answer.
+---   
+Nice job! :-)
+That's right, there are 3860 total parameters. That's 196 times fewer parameters! Here's how the answer is calculated:  
+
+(8 * 8 * 3 + 1) * 20 = 3840 + 20 = 3860
+
+That's 3840 weights and 20 biases. This should look similar to the answer from the previous quiz. The difference being it's just 20 instead of (14 * 14 * 20). Remember, with weight sharing we use the same filter for an entire depth slice. Because of this we can get rid of 14 * 14 and be left with only 20.
 
 # Two Variables: weights and bias name solution   
 tf.reset_default_graph()  # Remove the previous weights and bias  
