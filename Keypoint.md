@@ -105,7 +105,13 @@ Total number of parameters
 General: N(input) K(output) :
 (N+1) * K (parameters)
 
-# Two Variables: weights and bias   
+# Two Variables: weights and bias name solution   
 tf.reset_default_graph()  # Remove the previous weights and bias  
 bias = tf.Variable(tf.truncated_normal([3]), name='bias_0')  
 weights = tf.Variable(tf.truncated_normal([2, 3]) ,name='weights_0')
+
+# Save and Load   
+saver = tf.train.Saver()   
+saver.save(sess, save_file)  
+tf.reset_default_graph() # Remove the previous weights and bias  
+saver.restore(sess, save_file) # Load the weights and bias - No Error      
