@@ -117,7 +117,9 @@ Nice job! :-)
 That's right, there are 756560 total parameters. That's a HUGE amount! Here's how we calculate it:   
 (8 * 8 * 3 + 1) * (14 * 14 * 20) = 756560   
 8 * 8 * 3 is the number of weights, we add 1 for the bias. Remember, each weight is assigned to every single part of the output (14 * 14 * 20). So we multiply these two numbers together and we get the final answer.
+
 ---   
+Parameter Sharing:  
 Nice job! :-)
 That's right, there are 3860 total parameters. That's 196 times fewer parameters! Here's how the answer is calculated:  
 
