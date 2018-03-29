@@ -242,7 +242,7 @@ def conv2d(input):
     return tf.nn.conv2d(input, F_W, strides, padding) + F_b
 
 out = conv2d(X)
-'''
+```
 # TensorFlow Pooling Layer
 `out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
 out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))`
