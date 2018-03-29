@@ -220,6 +220,6 @@ Some students have reported errors when importing Tensorflow. If this occurs, fi
 Nvidia CUDA/driver issues
 Students may encounter an error message related to a mismatch between driver versions for the Nvidia GPU used in the instance. In order to correct the error, run the below commands to remove the installed Nvidia driver and install version 367.57:
 
-sudo apt-get remove nvidia-*
-wget http://us.download.nvidia.com/XFree86/Linux-x86_64/367.57/NVIDIA-Linux-x86_64-367.57.run
-sudo bash ./NVIDIA-Linux-x86_64-367.57.run --dkms
+1. sudo apt-get remove nvidia-*
+2. wget http://us.download.nvidia.com/XFree86/Linux-x86_64/367.57/NVIDIA-Linux-x86_64-367.57.run
+3. sudo bash ./NVIDIA-Linux-x86_64-367.57.run --dkms
