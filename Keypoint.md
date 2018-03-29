@@ -205,8 +205,8 @@ saver.restore(sess, save_file) # Load the weights and bias - No Error
 ```
 # TensorFlow Convolution Layer
 
-`out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))`
-`out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))`
+- out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+- out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))
 
 ```python
 """
@@ -244,8 +244,8 @@ def conv2d(input):
 out = conv2d(X)
 ```
 # TensorFlow Pooling Layer
-`out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
-out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))`
+- out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+- out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))
 ```python
 """
 Set the values to `strides` and `ksize` such that
@@ -275,3 +275,56 @@ def maxpool(input):
     
 out = maxpool(X)
 ```
+
+# CNNs Additional Resources
+There are many wonderful free resources that allow you to go into more depth around Convolutional Neural Networks. In this course, our goal is to give you just enough intuition to start applying this concept on real world problems so you have enough of an exposure to explore more on your own. We strongly encourage you to explore some of these resources more to reinforce your intuition and explore different ideas.
+
+These are the resources we recommend in particular:
+
+- Andrej Karpathy's CS231n Stanford course on Convolutional Neural Networks.
+- Michael Nielsen's free book on Deep Learning.
+- Goodfellow, Bengio, and Courville's more advanced free book on Deep Learning.
+
+# Lab: LeNet in TensorFlow
+
+LeNet. Source: Yann Lecun.
+
+You're now going to put together everything you've learned and implement the LeNet architecture using TensorFlow.
+
+When you get to your next project, remember that LeNet can be a great starting point for your network architecture!
+
+Instructions:
+- Set up your development environment with the CarND Starter Kit
+- git clone https://github.com/udacity/CarND-LeNet-Lab.git
+- cd CarND-LeNet-Lab
+- jupyter notebook
+Finish off the architecture implementation in the LeNet function. That's the only piece that's missing.
+Preprocessing
+An MNIST image is initially 784 features (1D). If the data is not normalized from [0, 255] to [0, 1], normalize it. We reshape this to (28, 28, 1) (3D), and pad the image with 0s such that the height and width are 32 (centers digit further). Thus, the input shape going into the first convolutional layer is 32x32x1.
+
+### Specs
+Convolution layer 1. The output shape should be 28x28x6.
+
+Activation 1. Your choice of activation function.
+
+Pooling layer 1. The output shape should be 14x14x6.
+
+Convolution layer 2. The output shape should be 10x10x16.
+
+Activation 2. Your choice of activation function.
+
+Pooling layer 2. The output shape should be 5x5x16.
+
+Flatten layer. Flatten the output shape of the final pooling layer such that it's 1D instead of 3D. The easiest way to do is by using tf.contrib.layers.flatten, which is already imported for you.
+
+Fully connected layer 1. This should have 120 outputs.
+
+Activation 3. Your choice of activation function.
+
+Fully connected layer 2. This should have 84 outputs.
+
+Activation 4. Your choice of activation function.
+
+Fully connected layer 3. This should have 10 outputs.
+
+You'll return the result of the final fully connected layer from the LeNet function.
