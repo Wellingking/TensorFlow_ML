@@ -24,13 +24,16 @@ Implement the Min-Max scaling function ( X′=a+(X−Xmin)(b−a)Xmax−XminX′
 - b=0.9  
 
 # Problem 2 - Set the features and labels tensors
+```
 features = tf.placeholder(tf.float32)   
 labels = tf.placeholder(tf.float32)
+```
 
-# Problem 2 - Set the weights and biases tensors
+# Problem 3 - Set the weights and biases tensors
+```
 weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))   
 biases = tf.Variable(tf.zeros(labels_count))
-
+```
 # Test Cases   
 ```python
 from tensorflow.python.ops.variables import Variable
@@ -54,24 +57,25 @@ assert labels._dtype == tf.float32, 'labels must be type float32'
 ```
 
 # Feed dicts for training, validation, and test session
+```
 train_feed_dict = {features: train_features, labels: train_labels}
 valid_feed_dict = {features: valid_features, labels: valid_labels}
 test_feed_dict = {features: test_features, labels: test_labels}
-
+```
 # Linear Function WX + b
-logits = tf.matmul(features, weights) + biases
 
-prediction = tf.nn.softmax(logits)
+`logits = tf.matmul(features, weights) + biases`
+`prediction = tf.nn.softmax(logits)`
 
 # Cross entropy
-cross_entropy = -tf.reduce_sum(labels * tf.log(prediction), axis=1)
+`cross_entropy = -tf.reduce_sum(labels * tf.log(prediction), axis=1)`
 
-# some students have encountered challenges using this function, and have resolved issues
-# using https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits
-# please see this thread for more detail https://discussions.udacity.com/t/accuracy-0-10-in-the-intro-to-tensorflow-lab/272469/9
+1 some students have encountered challenges using this function, and have resolved issues
+2 using https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits
+3 please see this thread for more detail https://discussions.udacity.com/t/accuracy-0-10-in-the-intro-to-tensorflow-lab/272469/9
 
 # Training loss
-loss = tf.reduce_mean(cross_entropy)
+`loss = tf.reduce_mean(cross_entropy)`
 
 # Create an operation that initializes all variables
 init = tf.global_variables_initializer()
@@ -85,15 +89,13 @@ with tf.Session() as session:
     session.run(loss, feed_dict=valid_feed_dict)
     session.run(loss, feed_dict=test_feed_dict)
     biases_data = session.run(biases)
-```
 
 assert not np.count_nonzero(biases_data), 'biases must be zeros'
-
 print('Tests Passed!')
-
+```
 # Deep Neural Networks
 
-Total number of parameters
+Total number of parameters  
 
 = size of W + size of b
 
@@ -102,10 +104,10 @@ Total number of parameters
 = 7850
 
 General: N(input) K(output) :
-(N+1) * K (parameters)
+`(N+1) * K (parameters)`
 
 # Convolution Neural Networks   
-# Parameters of CNN   
+## Parameters of CNN   
 Dimensionality
 From what we've learned so far, how can we calculate the number of neurons of each layer in our CNN?
 
@@ -140,20 +142,19 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 SAME Padding, the output height and width are computed as:   
 ```
 >out_height = ceil(float(in_height) / float(strides[1]))  
->
 >out_width = ceil(float(in_width) / float(strides[2]))  
 
 VALID Padding, the output height and width are computed as:  
 
 >out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
->
 >out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
 ```
 
 
 
 # Total number of parameters   
-Setup   
+Setup:   
+```
 H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
 20 filters of shape 8x8x3 (HxWxD)  
@@ -165,13 +166,13 @@ Nice job! :-)
 That's right, there are 756560 total parameters. That's a HUGE amount! Here's how we calculate it:   
 (8 * 8 * 3 + 1) * (14 * 14 * 20) = 756560   
 8 * 8 * 3 is the number of weights, we add 1 for the bias. Remember, each weight is assigned to every single part of the output (14 * 14 * 20). So we multiply these two numbers together and we get the final answer.
-
+```
 ---   
 ## Parameter Sharing:  
 Nice job! :-)
 That's right, there are 3860 total parameters. That's 196 times fewer parameters! Here's how the answer is calculated:  
 
-(8 * 8 * 3 + 1) * 20 = 3840 + 20 = 3860
+`(8 * 8 * 3 + 1) * 20 = 3840 + 20 = 3860`
 
 That's 3840 weights and 20 biases. This should look similar to the answer from the previous quiz. The difference being it's just 20 instead of (14 * 14 * 20). Remember, with weight sharing we use the same filter for an entire depth slice. Because of this we can get rid of 14 * 14 and be left with only 20.
 
