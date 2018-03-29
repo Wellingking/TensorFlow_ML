@@ -125,14 +125,14 @@ The output volume would be W_out * H_out * D_out.
 
 Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.  
 
-'''
+'
 input = tf.placeholder(tf.float32, (None, 32, 32, 3))
 filter_weights = tf.Variable(tf.truncated_normal((8, 8, 3, 20))) # (height, width, input_depth, output_depth)
 filter_bias = tf.Variable(tf.zeros(20))
 strides = [1, 2, 2, 1] # (batch, height, width, depth)
 padding = 'SAME'
 conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
-'''
+'
 
 # In summary TensorFlow uses the following equation for 'SAME' vs 'VALID'  
 
