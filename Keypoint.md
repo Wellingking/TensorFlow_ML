@@ -32,7 +32,7 @@ weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))
 biases = tf.Variable(tf.zeros(labels_count))
 
 # Test Cases   
-'''
+```python
 from tensorflow.python.ops.variables import Variable
 
 assert features._op.name.startswith('Placeholder'), 'features must be a placeholder'
@@ -51,7 +51,7 @@ assert biases._variable._shape == (10), 'The shape of biases is incorrect'
 
 assert features._dtype == tf.float32, 'features must be type float32'
 assert labels._dtype == tf.float32, 'labels must be type float32'
-'''
+```
 
 # Feed dicts for training, validation, and test session
 train_feed_dict = {features: train_features, labels: train_labels}
@@ -77,14 +77,15 @@ loss = tf.reduce_mean(cross_entropy)
 init = tf.global_variables_initializer()
 
 # Test Cases   
-'''python
+
+```python
 with tf.Session() as session:
     session.run(init)
     session.run(loss, feed_dict=train_feed_dict)
     session.run(loss, feed_dict=valid_feed_dict)
     session.run(loss, feed_dict=test_feed_dict)
     biases_data = session.run(biases)
-'''
+```
 
 assert not np.count_nonzero(biases_data), 'biases must be zeros'
 
@@ -125,19 +126,19 @@ The output volume would be W_out * H_out * D_out.
 
 Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.  
 
-'
+```
 input = tf.placeholder(tf.float32, (None, 32, 32, 3))
 filter_weights = tf.Variable(tf.truncated_normal((8, 8, 3, 20))) # (height, width, input_depth, output_depth)
 filter_bias = tf.Variable(tf.zeros(20))
 strides = [1, 2, 2, 1] # (batch, height, width, depth)
 padding = 'SAME'
 conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
-'
+```
 
 # In summary TensorFlow uses the following equation for 'SAME' vs 'VALID'  
 
 SAME Padding, the output height and width are computed as:   
-
+```
 >out_height = ceil(float(in_height) / float(strides[1]))  
 >
 >out_width = ceil(float(in_width) / float(strides[2]))  
@@ -147,7 +148,7 @@ VALID Padding, the output height and width are computed as:
 >out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
 >
 >out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
-
+```
 
 
 
