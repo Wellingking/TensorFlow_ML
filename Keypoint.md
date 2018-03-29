@@ -104,7 +104,54 @@ General: N(input) K(output) :
 (N+1) * K (parameters)
 
 # Convolution Neural Networks   
-Total number of parameters   
+# Parameters of CNN   
+Dimensionality
+From what we've learned so far, how can we calculate the number of neurons of each layer in our CNN?
+
+Given:
+
+our input layer has a width of W and a height of H  
+our convolutional layer has a filter size F  
+we have a stride of S  
+a padding of P  
+and the number of filters K,  
+the following formula gives us the width of the next layer: W_out =[ (W−F+2P)/S] + 1.  
+
+The output height would be H_out = [(H-F+2P)/S] + 1.  
+
+And the output depth would be equal to the number of filters D_out = K.  
+
+The output volume would be W_out * H_out * D_out.  
+
+Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.  
+
+'''
+input = tf.placeholder(tf.float32, (None, 32, 32, 3))
+filter_weights = tf.Variable(tf.truncated_normal((8, 8, 3, 20))) # (height, width, input_depth, output_depth)
+filter_bias = tf.Variable(tf.zeros(20))
+strides = [1, 2, 2, 1] # (batch, height, width, depth)
+padding = 'SAME'
+conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
+'''
+
+# In summary TensorFlow uses the following equation for 'SAME' vs 'VALID'  
+
+SAME Padding, the output height and width are computed as:   
+
+>out_height = ceil(float(in_height) / float(strides[1]))  
+>
+>out_width = ceil(float(in_width) / float(strides[2]))  
+
+VALID Padding, the output height and width are computed as:  
+
+>out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+>
+>out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
+
+
+
+
+# Total number of parameters   
 Setup   
 H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
@@ -139,23 +186,3 @@ tf.reset_default_graph() # Remove the previous weights and bias
 saver.restore(sess, save_file) # Load the weights and bias - No Error      
 
 
-#Parameters  
-Dimensionality
-From what we've learned so far, how can we calculate the number of neurons of each layer in our CNN?
-
-Given:
-
-our input layer has a width of W and a height of H  
-our convolutional layer has a filter size F  
-we have a stride of S  
-a padding of P  
-and the number of filters K,  
-the following formula gives us the width of the next layer: W_out =[ (W−F+2P)/S] + 1.  
-
-The output height would be H_out = [(H-F+2P)/S] + 1.  
-
-And the output depth would be equal to the number of filters D_out = K.  
-
-The output volume would be W_out * H_out * D_out.  
-
-Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.
