@@ -10,12 +10,12 @@ method: (55000 * 784 * 32 / 8)
 The first problem involves normalizing the features for your training and test data.
 Implement Min-Max scaling in the `normalize()` function to a range of `a=0.1` and `b=0.9`. After scaling, the values of the pixels in the input data should range from 0.1 to 0.9.
 Since the raw notMNIST image data is in [grayscale](https://en.wikipedia.org/wiki/Grayscale), the current values range from a min of 0 to a max of 255.
-
+`
 Min-Max Scaling:
 $
 X'=a+{\frac {\left(X-X_{\min }\right)\left(b-a\right)}{X_{\max }-X_{\min }}}
 $
-
+`
 Implement the Min-Max scaling function ( X′=a+(X−Xmin)(b−a)Xmax−XminX′=a+(X−Xmin)(b−a)Xmax−Xmin ) with the parameters:
 
 - Xmin=0  
@@ -70,15 +70,15 @@ test_feed_dict = {features: test_features, labels: test_labels}
 # Cross entropy
 `cross_entropy = -tf.reduce_sum(labels * tf.log(prediction), axis=1)`
 
-1 some students have encountered challenges using this function, and have resolved issues
-2 using https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits
-3 please see this thread for more detail https://discussions.udacity.com/t/accuracy-0-10-in-the-intro-to-tensorflow-lab/272469/9
+1. some students have encountered challenges using this function, and have resolved issues
+2. using https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits
+3. please see this thread for more detail https://discussions.udacity.com/t/accuracy-0-10-in-the-intro-to-tensorflow-lab/272469/9
 
 # Training loss
 `loss = tf.reduce_mean(cross_entropy)`
 
 # Create an operation that initializes all variables
-init = tf.global_variables_initializer()
+`init = tf.global_variables_initializer()`
 
 # Test Cases   
 
@@ -112,7 +112,6 @@ Dimensionality
 From what we've learned so far, how can we calculate the number of neurons of each layer in our CNN?
 
 Given:
-
 our input layer has a width of W and a height of H  
 our convolutional layer has a filter size F  
 we have a stride of S  
@@ -144,7 +143,7 @@ SAME Padding, the output height and width are computed as:
 >out_height = ceil(float(in_height) / float(strides[1]))  
 >out_width = ceil(float(in_width) / float(strides[2]))  
 
-VALID Padding, the output height and width are computed as:  
+#VALID Padding, the output height and width are computed as:  
 
 >out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
 >out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
@@ -153,8 +152,8 @@ VALID Padding, the output height and width are computed as:
 
 
 # Total number of parameters   
-Setup:   
 ```
+Setup:   
 H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
 20 filters of shape 8x8x3 (HxWxD)  
@@ -179,7 +178,8 @@ That's 3840 weights and 20 biases. This should look similar to the answer from t
 ## Pooling Mechanics
 1. new_height = (input_height - filter_height)/S + 1  
 2. new_width = (input_width - filter_width)/S + 1  
-Here's the corresponding code:  
+
+### Here's the corresponding code:  
 ```python
 input = tf.placeholder(tf.float32, (None, 4, 4, 5))
 filter_shape = [1, 2, 2, 1]
@@ -187,7 +187,6 @@ strides = [1, 2, 2, 1]
 padding = 'VALID'
 pool = tf.nn.max_pool(input, filter_shape, strides, padding)  
 ```
-
 # Two Variables: weights and bias name solution   
 ```python
 tf.reset_default_graph()  # Remove the previous weights and bias  
