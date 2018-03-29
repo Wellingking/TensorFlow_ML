@@ -124,7 +124,10 @@ The output height would be H_out = [(H-F+2P)/S] + 1.
 And the output depth would be equal to the number of filters D_out = K.  
 
 The output volume would be W_out * H_out * D_out.  
-
+```
+- new_height = (input_height - filter_height + 2 * P)/S + 1
+- new_width = (input_width - filter_width + 2 * P)/S + 1
+```
 Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.  
 
 ```
