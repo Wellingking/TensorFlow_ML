@@ -137,3 +137,25 @@ saver = tf.train.Saver()
 saver.save(sess, save_file)  
 tf.reset_default_graph() # Remove the previous weights and bias  
 saver.restore(sess, save_file) # Load the weights and bias - No Error      
+
+
+#Parameters  
+Dimensionality
+From what we've learned so far, how can we calculate the number of neurons of each layer in our CNN?
+
+Given:
+
+our input layer has a width of W and a height of H  
+our convolutional layer has a filter size F  
+we have a stride of S  
+a padding of P  
+and the number of filters K,  
+the following formula gives us the width of the next layer: W_out =[ (W−F+2P)/S] + 1.  
+
+The output height would be H_out = [(H-F+2P)/S] + 1.  
+
+And the output depth would be equal to the number of filters D_out = K.  
+
+The output volume would be W_out * H_out * D_out.  
+
+Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.
