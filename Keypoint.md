@@ -166,13 +166,24 @@ That's right, there are 756560 total parameters. That's a HUGE amount! Here's ho
 8 * 8 * 3 is the number of weights, we add 1 for the bias. Remember, each weight is assigned to every single part of the output (14 * 14 * 20). So we multiply these two numbers together and we get the final answer.
 
 ---   
-Parameter Sharing:  
+## Parameter Sharing:  
 Nice job! :-)
 That's right, there are 3860 total parameters. That's 196 times fewer parameters! Here's how the answer is calculated:  
 
 (8 * 8 * 3 + 1) * 20 = 3840 + 20 = 3860
 
 That's 3840 weights and 20 biases. This should look similar to the answer from the previous quiz. The difference being it's just 20 instead of (14 * 14 * 20). Remember, with weight sharing we use the same filter for an entire depth slice. Because of this we can get rid of 14 * 14 and be left with only 20.
+
+## Pooling Mechanics
+new_height = (input_height - filter_height)/S + 1  
+new_width = (input_width - filter_width)/S + 1  
+Here's the corresponding code:  
+input = tf.placeholder(tf.float32, (None, 4, 4, 5))
+filter_shape = [1, 2, 2, 1]
+strides = [1, 2, 2, 1]
+padding = 'VALID'
+pool = tf.nn.max_pool(input, filter_shape, strides, padding)  
+
 
 # Two Variables: weights and bias name solution   
 tf.reset_default_graph()  # Remove the previous weights and bias  
