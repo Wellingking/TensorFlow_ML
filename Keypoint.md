@@ -1,5 +1,5 @@
 # Keypoint of TensorFlow relevant
-## *Photo pix memory
+## *Photo pix memory*
 
 ### train_features Shape: (55000, 784) Type: float32   
 >how many bytes of memory does train_features need?   
@@ -139,12 +139,12 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 
 # In summary TensorFlow uses the following equation for 'SAME' vs 'VALID'  
 
-*SAME Padding, the output height and width are computed as:   
+*SAME Padding, the output height and width are computed as:   *
 
 > out_height = ceil(float(in_height) / float(strides[1]))  
 > out_width = ceil(float(in_width) / float(strides[2]))  
 
-*VALID Padding, the output height and width are computed as:  
+*VALID Padding, the output height and width are computed as:  *
 
 > out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
 > out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
@@ -154,7 +154,7 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 
 # Total number of parameters   
 
-*Setup:   
+*Setup:   *
 ```python
 H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
