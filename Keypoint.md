@@ -139,12 +139,12 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 
 # In summary TensorFlow uses the following equation for 'SAME' vs 'VALID'  
 
-*SAME Padding, the output height and width are computed as:   *
+* _SAME Padding, the output height and width are computed as:_
 
 > out_height = ceil(float(in_height) / float(strides[1]))  
 > out_width = ceil(float(in_width) / float(strides[2]))  
 
-*VALID Padding, the output height and width are computed as:  *
+* _VALID Padding, the output height and width are computed as:_
 
 > out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
 > out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
@@ -154,7 +154,7 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 
 # Total number of parameters   
 
-*Setup:   *
+*Setup:*
 ```python
 H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
