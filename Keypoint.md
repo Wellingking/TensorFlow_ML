@@ -141,13 +141,13 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 
 * _SAME Padding, the output height and width are computed as:_
 
-> out_height = ceil(float(in_height) / float(strides[1]))  
-> out_width = ceil(float(in_width) / float(strides[2]))  
++ out_height = ceil(float(in_height) / float(strides[1]))  
++ out_width = ceil(float(in_width) / float(strides[2]))  
 
 * _VALID Padding, the output height and width are computed as:_
 
-> out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
-> out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
+[] out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+[] out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
 
 
 
