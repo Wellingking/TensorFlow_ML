@@ -1,12 +1,12 @@
 # Keypoint of TensorFlow relevant
-# Photo pix memory
+## *Photo pix memory
 
-train_features Shape: (55000, 784) Type: float32   
-how many bytes of memory does train_features need?   
-172480000   
-method: (55000 * 784 * 32 / 8)
+### train_features Shape: (55000, 784) Type: float32   
+>how many bytes of memory does train_features need?   
+> 172480000   
+> method: (55000 * 784 * 32 / 8)
 
-# Problem 1 - normalize scale
+## Problem 1 - normalize scale
 The first problem involves normalizing the features for your training and test data.
 Implement Min-Max scaling in the `normalize()` function to a range of `a=0.1` and `b=0.9`. After scaling, the values of the pixels in the input data should range from 0.1 to 0.9.
 Since the raw notMNIST image data is in [grayscale](https://en.wikipedia.org/wiki/Grayscale), the current values range from a min of 0 to a max of 255.
@@ -17,24 +17,23 @@ X'=a+{\frac {\left(X-X_{\min }\right)\left(b-a\right)}{X_{\max }-X_{\min }}}
 $
 `
 Implement the Min-Max scaling function ( X′=a+(X−Xmin)(b−a)Xmax−XminX′=a+(X−Xmin)(b−a)Xmax−Xmin ) with the parameters:
+> Xmin=0  
+> Xmax=255  
+> a=0.1  
+> b=0.9  
 
-- Xmin=0  
-- Xmax=255  
-- a=0.1  
-- b=0.9  
-
-# Problem 2 - Set the features and labels tensors
-```
+## Problem 2 - Set the features and labels tensors
+```python
 features = tf.placeholder(tf.float32)   
 labels = tf.placeholder(tf.float32)
 ```
 
-# Problem 3 - Set the weights and biases tensors
+## Problem 3 - Set the weights and biases tensors
 ```
 weights = tf.Variable(tf.truncated_normal((features_count, labels_count)))   
 biases = tf.Variable(tf.zeros(labels_count))
 ```
-# Test Cases   
+## Test Cases   
 ```python
 from tensorflow.python.ops.variables import Variable
 
@@ -56,31 +55,31 @@ assert features._dtype == tf.float32, 'features must be type float32'
 assert labels._dtype == tf.float32, 'labels must be type float32'
 ```
 
-# Feed dicts for training, validation, and test session
-```
+## Feed dicts for training, validation, and test session
+```python
 train_feed_dict = {features: train_features, labels: train_labels}
 valid_feed_dict = {features: valid_features, labels: valid_labels}
 test_feed_dict = {features: test_features, labels: test_labels}
 ```
-# Linear Function WX + b
+## Linear Function WX + b
 
 `logits = tf.matmul(features, weights) + biases`
 `prediction = tf.nn.softmax(logits)`
 
-# Cross entropy
+## Cross entropy
 `cross_entropy = -tf.reduce_sum(labels * tf.log(prediction), axis=1)`
 
 1. some students have encountered challenges using this function, and have resolved issues
 2. using https://www.tensorflow.org/api_docs/python/tf/nn/softmax_cross_entropy_with_logits
 3. please see this thread for more detail https://discussions.udacity.com/t/accuracy-0-10-in-the-intro-to-tensorflow-lab/272469/9
 
-# Training loss
+## Training loss
 `loss = tf.reduce_mean(cross_entropy)`
 
-# Create an operation that initializes all variables
+## Create an operation that initializes all variables
 `init = tf.global_variables_initializer()`
 
-# Test Cases   
+## Test Cases   
 
 ```python
 with tf.Session() as session:
@@ -108,29 +107,28 @@ General: N(input) K(output) :
 
 # Convolution Neural Networks   
 ## Parameters of CNN   
-Dimensionality
-From what we've learned so far, how can we calculate the number of neurons of each layer in our CNN?
+*Dimensionality*
+> From what we've learned so far, how can we calculate the number of neurons of each layer in our CNN?
 
-Given:
-our input layer has a width of W and a height of H  
-our convolutional layer has a filter size F  
-we have a stride of S  
-a padding of P  
-and the number of filters K,  
-the following formula gives us the width of the next layer: W_out =[ (W−F+2P)/S] + 1.  
+> Given:
+> our input layer has a width of W and a height of H  
+> our convolutional layer has a filter size F  
+> we have a stride of S  
+> a padding of P  
+> and the number of filters K,  
+> the following formula gives us the width of the next layer: `W_out =[ (W−F+2P)/S] + 1`.  
+> The output height would be `H_out = [(H-F+2P)/S] + 1`.  
 
-The output height would be H_out = [(H-F+2P)/S] + 1.  
+And the output depth would be equal to the number of filters `D_out = K`.  
 
-And the output depth would be equal to the number of filters D_out = K.  
+The output volume would be `W_out * H_out * D_out`.  
 
-The output volume would be W_out * H_out * D_out.  
+* new_height = (input_height - filter_height + 2 * P)/S + 1
+* new_width = (input_width - filter_width + 2 * P)/S + 1
 
-- new_height = (input_height - filter_height + 2 * P)/S + 1
-- new_width = (input_width - filter_width + 2 * P)/S + 1
+> Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.  
 
-Knowing the dimensionality of each additional layer helps us understand how large our model is and how our decisions around filter size and stride affect the size of our network.  
-
-```
+```python
 input = tf.placeholder(tf.float32, (None, 32, 32, 3))
 filter_weights = tf.Variable(tf.truncated_normal((8, 8, 3, 20))) # (height, width, input_depth, output_depth)
 filter_bias = tf.Variable(tf.zeros(20))
@@ -141,22 +139,23 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 
 # In summary TensorFlow uses the following equation for 'SAME' vs 'VALID'  
 
-SAME Padding, the output height and width are computed as:   
-```
->out_height = ceil(float(in_height) / float(strides[1]))  
->out_width = ceil(float(in_width) / float(strides[2]))  
+*SAME Padding, the output height and width are computed as:   
 
-#VALID Padding, the output height and width are computed as:  
+> out_height = ceil(float(in_height) / float(strides[1]))  
+> out_width = ceil(float(in_width) / float(strides[2]))  
 
->out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
->out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
-```
+*VALID Padding, the output height and width are computed as:  
+
+> out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
+> out_width = ceil(float(in_width - filter_width + 1) / float(strides[2]))
+
 
 
 
 # Total number of parameters   
-```
-Setup:   
+
+*Setup:   
+```python
 H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
 20 filters of shape 8x8x3 (HxWxD)  
@@ -178,11 +177,11 @@ That's right, there are 3860 total parameters. That's 196 times fewer parameters
 
 That's 3840 weights and 20 biases. This should look similar to the answer from the previous quiz. The difference being it's just 20 instead of (14 * 14 * 20). Remember, with weight sharing we use the same filter for an entire depth slice. Because of this we can get rid of 14 * 14 and be left with only 20.
 
-## Pooling Mechanics
+# Pooling Mechanics
 1. new_height = (input_height - filter_height)/S + 1  
 2. new_width = (input_width - filter_width)/S + 1  
 
-### Here's the corresponding code:  
+## Here's the corresponding code:  
 ```python
 input = tf.placeholder(tf.float32, (None, 4, 4, 5))
 filter_shape = [1, 2, 2, 1]
@@ -190,13 +189,13 @@ strides = [1, 2, 2, 1]
 padding = 'VALID'
 pool = tf.nn.max_pool(input, filter_shape, strides, padding)  
 ```
-# Two Variables: weights and bias name solution   
+## Two Variables: weights and bias name solution   
 ```python
 tf.reset_default_graph()  # Remove the previous weights and bias  
 bias = tf.Variable(tf.truncated_normal([3]), name='bias_0')  
 weights = tf.Variable(tf.truncated_normal([2, 3]) ,name='weights_0')
 ```
-# Save and Load   
+## Save and Load   
 ```python
 saver = tf.train.Saver()   
 saver.save(sess, save_file)  
@@ -205,8 +204,8 @@ saver.restore(sess, save_file) # Load the weights and bias - No Error
 ```
 # TensorFlow Convolution Layer
 
-- out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))
-- out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))
+- `out_height = ceil(float(in_height - filter_height + 1) / float(strides[1]))`
+- `out_width  = ceil(float(in_width - filter_width + 1) / float(strides[2]))`
 
 ```python
 """
