@@ -155,7 +155,7 @@ conv = tf.nn.conv2d(input, filter_weights, strides, padding) + filter_bias
 # Total number of parameters   
 
 *Setup:*
-```python
+`
 H = height, W = width, D = depth   
 We have an input of shape 32x32x3 (HxWxD)  
 20 filters of shape 8x8x3 (HxWxD)  
@@ -167,7 +167,7 @@ Nice job! :-)
 That's right, there are 756560 total parameters. That's a HUGE amount! Here's how we calculate it:   
 (8 * 8 * 3 + 1) * (14 * 14 * 20) = 756560   
 8 * 8 * 3 is the number of weights, we add 1 for the bias. Remember, each weight is assigned to every single part of the output (14 * 14 * 20). So we multiply these two numbers together and we get the final answer.
-```
+`
 ---   
 ## Parameter Sharing:  
 Nice job! :-)
