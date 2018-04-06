@@ -24,19 +24,19 @@ conda install -c conda-forge tensorflow
 
 That's it! You have a working environment with TensorFlow. Test it out with the code in the Hello, world! section below.
 
-Docker on Windows
+## Docker on Windows
 Docker instructions were offered prior to the availability of a stable Windows installation via pip or Anaconda. Please try Anaconda first, Docker instructions have been retained as an alternative to an installation via Anaconda.
 
-Install Docker
+### Install Docker
 Download and install Docker from the official Docker website.
 
 Run the Docker Container
 Run the command below to start a jupyter notebook server with TensorFlow:
 
-docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow
+`docker run -it -p 8888:8888 gcr.io/tensorflow/tensorflow`
 Users in China should use the b.gcr.io/tensorflow/tensorflow instead of gcr.io/tensorflow/tensorflow
 
-You can access the jupyter notebook at localhost:8888. The server includes 3 examples of TensorFlow notebooks, but you can create a new notebook to test all your code.
+You can access the jupyter notebook at `localhost:8888`. The server includes 3 examples of TensorFlow notebooks, but you can create a new notebook to test all your code.
 
 Hello, world!
 Try running the following code in your Python console to make sure you have TensorFlow properly installed. The console will print "Hello, world!" if TensorFlow is installed. Don’t worry about understanding what it does. You’ll learn about it in the next section.
@@ -52,4 +52,4 @@ with tf.Session() as sess:
     print(output)
 ```
 *Errors*
-If you're getting the error tensorflow.python.framework.errors.InvalidArgumentError: Placeholder:0 is both fed and fetched, you're running an older version of TensorFlow. Uninstall TensorFlow, and reinstall it using the instructions above. For more solutions, check out the Common Problems section.
+If you're getting the error `tensorflow.python.framework.errors.InvalidArgumentError: Placeholder:0 is both fed and fetched`, you're running an older version of TensorFlow. Uninstall TensorFlow, and reinstall it using the instructions above. For more solutions, check out the Common Problems section.
