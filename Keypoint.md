@@ -301,7 +301,7 @@ Finish off the architecture implementation in the LeNet function. That's the onl
 Preprocessing
 An MNIST image is initially 784 features (1D). If the data is not normalized from [0, 255] to [0, 1], normalize it. We reshape this to (28, 28, 1) (3D), and pad the image with 0s such that the height and width are 32 (centers digit further). Thus, the input shape going into the first convolutional layer is 32x32x1.
 
-### Specs
+## Specs
 Convolution layer 1. The output shape should be 28x28x6.
 
 Activation 1. Your choice of activation function.
@@ -327,3 +327,19 @@ Activation 4. Your choice of activation function.
 Fully connected layer 3. This should have 10 outputs.
 
 You'll return the result of the final fully connected layer from the LeNet function.
+
+| Layer         		|     Description	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| Input         		| 32x32x1 grayscale image   							| 
+| Convolution 5x5     	| 1x1 stride, valid padding, outputs 28x28x6 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x6 				|
+| Convolution 5x5	    | 1x1 stride, valid padding, outputs 10x10x16	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x16 				|
+| Fully connected		| 400 inputs, 120 outputs	|
+| RELU					|												|
+| Fully connected		| 120 inputs, 84 outputs	|
+| RELU					|												|
+| Fully connected		| 84 inputs, 43 outputs	|
+
