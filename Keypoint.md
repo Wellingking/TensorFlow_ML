@@ -343,3 +343,11 @@ You'll return the result of the final fully connected layer from the LeNet funct
 | RELU					|												|
 | Fully connected		| 84 inputs, 43 outputs	|
 
+
+##Keras
+```
+# Another solution that is correct, but not recognized by the grader
+# model.add(Flatten(input_shape=(32, 32, 3)))
+# model.add(Dense(128, activation='relu'))
+# model.add(Dense(5, activation='softmax'))
+```
