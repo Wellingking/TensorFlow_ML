@@ -1,7 +1,7 @@
 # Keras
 
 The data set used in these quizzes can be downloaded [here].
-[here](https://d17h27t6h515a5.cloudfront.net/topher/2017/March/58dbf6d5_small-traffic-set/small-traffic-set.zip)
+[here]: https://d17h27t6h515a5.cloudfront.net/topher/2017/March/58dbf6d5_small-traffic-set/small-traffic-set.zip
 ## Keras Neural Networks
 ```python
 # Load pickled data
