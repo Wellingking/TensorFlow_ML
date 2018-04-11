@@ -344,7 +344,7 @@ You'll return the result of the final fully connected layer from the LeNet funct
 | Fully connected		| 84 inputs, 43 outputs	|
 
 
-##Keras
+## Keras
 ```
 # Another solution that is correct, but not recognized by the grader
 # model.add(Flatten(input_shape=(32, 32, 3)))
