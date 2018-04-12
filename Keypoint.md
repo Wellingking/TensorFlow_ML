@@ -351,3 +351,9 @@ You'll return the result of the final fully connected layer from the LeNet funct
 # model.add(Dense(128, activation='relu'))
 # model.add(Dense(5, activation='softmax'))
 ```
+
+## Alexnet
+> AlexNet requires images be 227 by 227. So, we use tf.image.resize_images resize the 32 by 32 traffic sign images.  
+> The notable part being:  
+> `x = tf.placeholder(tf.float32, (None, 32, 32, 3))  
+> resized = tf.image.resize_images(x, (227, 227))`
