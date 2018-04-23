@@ -358,3 +358,4 @@ You'll return the result of the final fully connected layer from the LeNet funct
 > `x = tf.placeholder(tf.float32, (None, 32, 32, 3))`  
 > `resized = tf.image.resize_images(x, (227, 227))`
 
+`In Keras, lambda layers can be used to create arbitrary functions that operate on each image as it passes through the layer.`
